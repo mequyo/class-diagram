@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Class Diagram Editor
+
+An interactive, browser-based UML class diagram editor built with React and Next.js. Create, arrange, and connect classifier elements on an infinite canvas with pan and zoom.
+
+![Example screenshot](assets/example.png)
+
+## What It Does
+
+This is a visual tool for designing object-oriented class structures. You can drag classifier cards around a grid-backed canvas, name them, add variables, and draw relationships between them.
+
+**Supported classifiers:**
+
+- Classes
+- Abstract classes
+- Interfaces
+- Enumerations
+
+**Supported relationships:**
+
+- Extension (inheritance)
+- Implementation (realization)
+- Association (planned)
+
+Connections are rendered as animated bezier curves with smart routing -- the app automatically picks the best exit and entry points on each card. Implementation lines are dashed, extension lines are solid, and labels like "implements" and "extends" follow the curves.
+
+## Features
+
+- Infinite canvas with pan (middle-mouse drag) and zoom (scroll wheel)
+- Draggable classifier cards with editable names and variable sections
+- Connection dropdowns that enforce UML rules (e.g., interfaces can only implement other interfaces)
+- Keyboard shortcuts for quickly adding new classifiers
+- Dark theme throughout
+- Bezier arrow rendering with auto-rotated text labels
+
+## Keyboard Shortcuts
+
+| Shortcut | Action |
+| --- | --- |
+| Alt + A | Add abstract class |
+| Alt + C | Add class |
+| Alt + I | Add interface |
+| Alt + E | Add enumeration |
+
+## Tech Stack
+
+- **React 18** with TypeScript
+- **Next.js 14** (App Router)
+- **Tailwind CSS** for styling
+- **shadcn/ui** component library (Radix UI primitives)
+- **Framer Motion** for animations
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Work in Progress
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+This project is still in early development. Here is what is not yet implemented or fully functional:
 
-## Learn More
+- **Methods section** -- The methods panel on each classifier card is a placeholder and does not yet support adding or editing methods.
+- **Variable modifiers** -- The `static`, `final`, and `scope` fields exist in the data model but the UI toggles for them are not wired up yet.
+- **Association connections** -- The data type is defined but association arrows are not rendered in the UI.
+- **Composition and aggregation** -- Arrow markers are defined in the SVG defs but not used anywhere.
+- **Save/load** -- There is no persistence, serialization, or export functionality.
+- **Undo/redo** -- Not implemented yet.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The example diagram shown above demonstrates the current state: you can create classifiers, name them, add variables, and connect them with inheritance or implementation arrows.
